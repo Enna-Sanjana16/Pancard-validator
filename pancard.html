@@ -1,0 +1,53 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <title>PAN Card Validator</title> 
+  <style> 
+    body { 
+      font-family: Arial; 
+      text-align: center; 
+      margin-top: 50px; 
+    } 
+    input { 
+      padding: 10px; 
+      width: 250px; 
+    } 
+    #message { 
+      margin-top: 20px; 
+      font-weight: bold; 
+    } 
+  </style>  
+</head> 
+<body> 
+ 
+  <h2>PAN Card Validator</h2> 
+  <input type="text" id="panInput" placeholder="Enter PAN number (e.g. ABCDE1234F)" /> 
+  <p id="message"></p> 
+ 
+  <script> 
+    const panInput = document.getElementById("panInput"); 
+    const message = document.getElementById("message"); 
+ 
+    panInput.addEventListener("input", function () { 
+      const pan = panInput.value.toUpperCase(); 
+      panInput.value = pan; // Auto convert to uppercase 
+ 
+      const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]$/; 
+ 
+      if (pan.length === 10) { 
+        if (panRegex.test(pan)) { 
+          message.textContent = " Valid PAN number."; 
+          message.style.color = "green"; 
+        } else { 
+          message.textContent = "Invalid PAN format."; 
+          message.style.color = "red"; 
+        } 
+      } else { 
+        message.textContent = "PAN must be 10 characters long."; 
+        message.style.color = "orange"; 
+      } 
+    }); 
+  </script> 
+ 
+</body> 
+</html> 
